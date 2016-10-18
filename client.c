@@ -61,11 +61,13 @@ main(int argc, char **argv)
                 break;
             }
         }
+        buf_read[rv] = 0;
         printf("Server's message: %s\n", buf_read);
         break;
     }
 
     tmp_bio = BIO_pop(my_bio); // pop bio type socket connect
+    BIO_ssl_shutdown(my_bio);
 
     if (BIO_do_handshake(tmp_bio) <= 0) {
         err_call("Error: SSL handshake\n");

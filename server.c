@@ -101,6 +101,7 @@ main(int argc, char **argv)
         }
 
         tmp_bio = BIO_pop(cbio); // pop bio type socket
+        BIO_ssl_shutdown(cbio);
 
         // receiving unencrypted message from client
         for (;;) {
